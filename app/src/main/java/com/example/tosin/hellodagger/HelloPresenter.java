@@ -8,6 +8,8 @@ import android.graphics.drawable.Drawable;
 
 public interface HelloPresenter {
 
+    public void setView(HelloView helloView);
+
     public void getHelloMsg(String helloMsg);
 
     public void getNiceImage(Drawable drawable);

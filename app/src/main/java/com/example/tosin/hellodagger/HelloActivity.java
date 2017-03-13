@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 public class HelloActivity extends AppCompatActivity implements HelloView{
+
+    @Inject
+    HelloPresenter presenter;
 
     private TextView friendlyText;
     private ImageView friendlyImage;
@@ -15,15 +20,19 @@ public class HelloActivity extends AppCompatActivity implements HelloView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ((BaseApplication) getApplication()).getComponent().inject(this);
+        presenter.setView(this);
 
         friendlyText = (TextView) findViewById(R.id.friendly_text);
         friendlyImage = (ImageView) findViewById(R.id.friendly_image);
 
+        setHelloMsg();
     }
 
     public void setHelloMsg(){
         // calls getHelloMsg and pass this string
         String hellomsg = "hey buddy!";
+        presenter.getHelloMsg(hellomsg);
     }
 
     public void changeHelloMsg(String hello){

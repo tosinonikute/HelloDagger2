@@ -1,6 +1,7 @@
 package com.example.tosin.hellodagger.component;
 
 import com.example.tosin.hellodagger.HelloActivity;
+import com.example.tosin.hellodagger.HelloPresenter;
 import com.example.tosin.hellodagger.module.HelloModule;
 import com.example.tosin.hellodagger.scope.UserScope;
 
@@ -12,7 +13,7 @@ import dagger.Component;
 
 @UserScope
 @Component(modules = {HelloModule.class})
-public class HelloComponent {
+public interface HelloComponent {
 
     void inject(HelloActivity helloActivity);
 
